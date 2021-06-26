@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:quran/core/router/router.dart';
+import 'package:quran/core/storage/app_storage.dart';
 import 'package:quran/views/show/view.dart';
 import 'package:quran/widgets/AnimatedWidgets.dart';
 import 'package:quran/widgets/customButton.dart';
-import 'package:quran/widgets/router/router.dart';
 
 class SelectLanguage extends StatelessWidget {
   @override
@@ -22,36 +23,36 @@ class SelectLanguage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-             AnimatedWidgets(
-               horizontalOffset: 20,
-                 virticaloffset: -50,
-                 duration: 2.1,
-                 child: CustomButton(title: "العربية")),
               AnimatedWidgets(
                   horizontalOffset: -20,
                   virticaloffset: -50,
                   duration: 2.1,
-                 child: CustomButton(title: "English")),
-              AnimatedWidgets(
-                  horizontalOffset: 20,
-                  virticaloffset: -50,
-                  duration: 1.9,
-                 child: CustomButton(title: "français")),
-              AnimatedWidgets(
-                 horizontalOffset: -20,
-                 virticaloffset: -50,
-                 duration: 1.6,
-                 child: CustomButton(title: "Deutsche")),
-              AnimatedWidgets(
-                  horizontalOffset: 20,
-                  virticaloffset: -50,
-                  duration: 1.3,
-                 child: CustomButton(title: "Español")),
+                  child: CustomButton(title: "العربية",onPressed: ()=> AppStorage.changeLanguage(AppLanguages.AR))),
               AnimatedWidgets(
                   horizontalOffset: -20,
                   virticaloffset: -50,
-                  duration: 1,
-                  child: CustomButton(title: "русский")),
+                  duration: 2.1,
+                 child: CustomButton(title: "English",onPressed: ()=> AppStorage.changeLanguage(AppLanguages.EN))),
+              // AnimatedWidgets(
+              //     horizontalOffset: 20,
+              //     virticaloffset: -50,
+              //     duration: 1.9,
+              //    child: CustomButton(title: "français")),
+              // AnimatedWidgets(
+              //    horizontalOffset: -20,
+              //    virticaloffset: -50,
+              //    duration: 1.6,
+              //    child: CustomButton(title: "Deutsche")),
+              // AnimatedWidgets(
+              //     horizontalOffset: 20,
+              //     virticaloffset: -50,
+              //     duration: 1.3,
+              //    child: CustomButton(title: "Español")),
+              // AnimatedWidgets(
+              //     horizontalOffset: -20,
+              //     virticaloffset: -50,
+              //     duration: 1,
+              //     child: CustomButton(title: "русский")),
             ],
           ),
         ),

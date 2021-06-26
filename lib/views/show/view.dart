@@ -1,46 +1,72 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quran/core/quran/controller.dart';
 import 'package:quran/widgets/AnimatedWidgets.dart';
 
-class ShowView extends StatelessWidget {
+class ShowView extends StatefulWidget {
+  final int number;
+  final String name;
+  ShowView(this.name,this.number);
+
+  @override
+  _ShowViewState createState() => _ShowViewState();
+}
+
+class _ShowViewState extends State<ShowView> {
+  bool _isLoading = true;
+  String surah;
+
+  initState(){
+    getSurah();
+    super.initState();
+  }
+
+  getSurah()async{
+    surah = await QuranController.getSurahById(widget.number);
+    setState(() => _isLoading = false);
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
-        body:Container(
-          height: double.infinity,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.black),
+        title: Container(
+          margin: EdgeInsets.symmetric(vertical: 10),
+          height:height*.07,
+          width: height*.3,
           decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/images/show.png"),
+            image:DecorationImage(
+                image: AssetImage("assets/images/Black.png"),
                 fit: BoxFit.cover
             ),
           ),
-          child: Column(
-            mainAxisAlignment:MainAxisAlignment.center,
+          child: Center(
+            child: Text(widget.name,style: TextStyle(color: Colors.black,fontSize:22,fontWeight: FontWeight.bold),),
+          ),
+        ),
+      ),
+        body:Container(
+          height: double.infinity,
+          // decoration: BoxDecoration(
+          //   image: DecorationImage(
+          //       image: AssetImage("assets/images/show.png"),
+          //       fit: BoxFit.cover
+          //   ),
+          // ),
+          child: ListView(
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            // mainAxisAlignment:MainAxisAlignment.center,
             children: [
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 10),
-                height:height*.07,
-                width: height*.3,
-                decoration: BoxDecoration(
-                  image:DecorationImage(
-                      image: AssetImage("assets/images/Black.png"),
-                      fit: BoxFit.cover
-                  ),
-                ),
-                child: Center(
-                  child: Text("الفاتحة",style: TextStyle(color: Colors.black,fontSize:22,fontWeight: FontWeight.bold),),
-                ),
-              ),
-              Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 10),
-                child: AnimatedWidgets(
-                  horizontalOffset: 50,
-                  virticaloffset: 20,
-                  duration: 1,
-                  child: Text("بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ (1)الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ (2) الرَّحْمَنِ الرَّحِيمِ (3) مَالِكِ يَوْمِ الدِّينِ (4) إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ (5) اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ (6) صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ (7)",
-                    textAlign:TextAlign.center,style: TextStyle(color: Colors.black,fontSize:32,fontWeight: FontWeight.bold),),
-                ),
+              if(!_isLoading)AnimatedWidgets(
+                horizontalOffset: 50,
+                virticaloffset: 20,
+                duration: 1,
+                child: Text(surah,
+                  textAlign:TextAlign.center,style: TextStyle(color: Colors.black,fontSize:32,fontWeight: FontWeight.bold),),
               ),
             ],
           ),

@@ -3,11 +3,11 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class AnimatedWidgets extends StatelessWidget {
   final Widget child;
-  final double? virticaloffset;
-  final double? horizontalOffset;
-  final double? duration;
+  final double virticaloffset;
+  final double horizontalOffset;
+  final double duration;
 
-   AnimatedWidgets({Key? key, this.virticaloffset, this.horizontalOffset, this.duration,required this.child}) : super(key: key);
+   AnimatedWidgets({Key key, this.virticaloffset, this.horizontalOffset, this.duration,@required this.child}) : super(key: key);
 
 
   @override

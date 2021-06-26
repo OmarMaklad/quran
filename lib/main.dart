@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quran/views/splash/view.dart';
-import 'package:quran/widgets/router/router.dart';
+
+import 'core/router/router.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,8 +14,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Quran',
       debugShowCheckedModeBanner: false,
-      // navigatorKey: navigatorKey,
-      // onGenerateRoute: onGenerateRoute,
+      navigatorKey: navigatorKey,
+      onGenerateRoute: onGenerateRoute,
       home:SplashView(),
     );
   }

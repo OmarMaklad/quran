@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:quran/core/router/router.dart';
 import 'package:quran/views/show/view.dart';
 
 class CustomButton extends StatelessWidget {
-  final Function? onPressed;
+  final Function onPressed;
   final String title;
-  CustomButton({this.onPressed,required this.title,});
+  CustomButton({this.onPressed,@required this.title,});
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return  GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (_)=>ShowView()));
-      },
+      onTap: onPressed,
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10),
         height:height*.07,
