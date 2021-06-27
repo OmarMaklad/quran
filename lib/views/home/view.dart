@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quran/core/quran/sura.dart';
 import 'package:quran/core/router/router.dart';
 import 'package:quran/core/storage/app_storage.dart';
+import 'package:quran/views/search/view.dart';
 import 'package:quran/views/show/view.dart';
 import 'package:quran/widgets/customButton.dart';
 
@@ -9,6 +10,13 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        elevation: 0.0,
+        actions: [
+          IconButton(icon: Icon(Icons.search), onPressed: ()=> MagicRouter.navigateTo(SearchView()))
+        ],
+      ),
       body: Container(
         height: double.infinity,
         decoration: BoxDecoration(
