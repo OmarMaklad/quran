@@ -11,8 +11,12 @@ class QuranController {
     final response = await Dio().get(url);
     SurahModel surahModel = SurahModel.fromJson(response.data);
     String surah = '';
+    bool removed = false;
     surahModel.data.ayahs.forEach((element) {
-      surah = surah + element.text + ' (${element.numberInSurah}) ';
+      String ayah = removed ? element.text : element.text.replaceAll('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيم', '');
+      if(!removed) ayah = 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيم' + '\n' + ayah;
+      removed = true;
+      surah = surah + ayah + ' (${element.numberInSurah}) ';
     });
     return surah;
   }

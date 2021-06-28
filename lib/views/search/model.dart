@@ -11,107 +11,186 @@ String searchModelToJson(SearchModel data) => json.encode(data.toJson());
 
 class SearchModel {
   SearchModel({
-    @required this.search,
+    @required this.code,
+    @required this.status,
+    @required this.data,
   });
 
-  Search search;
+  int code;
+  String status;
+  Data data;
 
   factory SearchModel.fromJson(Map<String, dynamic> json) => SearchModel(
-    search: Search.fromJson(json["search"]),
+    code: json["code"],
+    status: json["status"],
+    data: Data.fromJson(json["data"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "search": search.toJson(),
+    "code": code,
+    "status": status,
+    "data": data.toJson(),
   };
 }
 
-class Search {
-  Search({
-    @required this.query,
-    @required this.totalResults,
-    @required this.currentPage,
-    @required this.totalPages,
-    @required this.results,
+class Data {
+  Data({
+    @required this.count,
+    @required this.matches,
   });
 
-  String query;
-  int totalResults;
-  int currentPage;
-  int totalPages;
-  List<Result> results;
+  int count;
+  List<Match> matches;
 
-  factory Search.fromJson(Map<String, dynamic> json) => Search(
-    query: json["query"],
-    totalResults: json["total_results"],
-    currentPage: json["current_page"],
-    totalPages: json["total_pages"],
-    results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+    count: json["count"],
+    matches: List<Match>.from(json["matches"].map((x) => Match.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
-    "query": query,
-    "total_results": totalResults,
-    "current_page": currentPage,
-    "total_pages": totalPages,
-    "results": List<dynamic>.from(results.map((x) => x.toJson())),
+    "count": count,
+    "matches": List<dynamic>.from(matches.map((x) => x.toJson())),
   };
 }
 
-class Result {
-  Result({
-    @required this.verseId,
+class Match {
+  Match({
+    @required this.number,
     @required this.text,
-    @required this.translations,
+    @required this.edition,
+    @required this.surah,
+    @required this.numberInSurah,
   });
 
-  int verseId;
+  int number;
   String text;
-  List<Translation> translations;
+  Edition edition;
+  Surah surah;
+  int numberInSurah;
 
-  factory Result.fromJson(Map<String, dynamic> json) => Result(
-    verseId: json["verse_id"],
+  factory Match.fromJson(Map<String, dynamic> json) => Match(
+    number: json["number"],
     text: json["text"],
-    translations: List<Translation>.from(json["translations"].map((x) => Translation.fromJson(x))),
+    edition: Edition.fromJson(json["edition"]),
+    surah: Surah.fromJson(json["surah"]),
+    numberInSurah: json["numberInSurah"],
   );
 
   Map<String, dynamic> toJson() => {
-    "verse_id": verseId,
+    "number": number,
     "text": text,
-    "translations": List<dynamic>.from(translations.map((x) => x.toJson())),
+    "edition": edition.toJson(),
+    "surah": surah.toJson(),
+    "numberInSurah": numberInSurah,
   };
 }
 
-class Translation {
-  Translation({
+class Edition {
+  Edition({
+    @required this.identifier,
+    @required this.language,
     @required this.name,
-    @required this.id,
-    @required this.text,
+    @required this.englishName,
+    @required this.type,
   });
 
+  Identifier identifier;
+  Language language;
   Name name;
-  int id;
-  String text;
+  EnglishName englishName;
+  Type type;
 
-  factory Translation.fromJson(Map<String, dynamic> json) => Translation(
+  factory Edition.fromJson(Map<String, dynamic> json) => Edition(
+    identifier: identifierValues.map[json["identifier"]],
+    language: languageValues.map[json["language"]],
     name: nameValues.map[json["name"]],
-    id: json["id"],
-    text: json["text"],
+    englishName: englishNameValues.map[json["englishName"]],
+    type: typeValues.map[json["type"]],
   );
 
   Map<String, dynamic> toJson() => {
+    "identifier": identifierValues.reverse[identifier],
+    "language": languageValues.reverse[language],
     "name": nameValues.reverse[name],
-    "id": id,
-    "text": text,
+    "englishName": englishNameValues.reverse[englishName],
+    "type": typeValues.reverse[type],
   };
 }
 
-enum Name { FADEL_SOLIMAN_BRIDGES_TRANSLATION, DR_MUSTAFA_KHATTAB_THE_CLEAR_QURAN, INDONESIAN_ISLAMIC_AFFAIRS_MINISTRY, KING_FAHAD_QURAN_COMPLEX }
+enum EnglishName { KING_FAHAD_QURAN_COMPLEX, SIMPLE_CLEAN, JALAL_AD_DIN_AL_MAHALLI_AND_JALAL_AD_DIN_AS_SUYUTI }
+
+final englishNameValues = EnumValues({
+  "Jalal ad-Din al-Mahalli and Jalal ad-Din as-Suyuti": EnglishName.JALAL_AD_DIN_AL_MAHALLI_AND_JALAL_AD_DIN_AS_SUYUTI,
+  "King Fahad Quran Complex": EnglishName.KING_FAHAD_QURAN_COMPLEX,
+  "Simple Clean": EnglishName.SIMPLE_CLEAN
+});
+
+enum Identifier { AR_MUYASSAR, QURAN_SIMPLE_CLEAN, AR_JALALAYN }
+
+final identifierValues = EnumValues({
+  "ar.jalalayn": Identifier.AR_JALALAYN,
+  "ar.muyassar": Identifier.AR_MUYASSAR,
+  "quran-simple-clean": Identifier.QURAN_SIMPLE_CLEAN
+});
+
+enum Language { AR }
+
+final languageValues = EnumValues({
+  "ar": Language.AR
+});
+
+enum Name { EMPTY, SIMPLE_CLEAN, NAME }
 
 final nameValues = EnumValues({
-  "Dr. Mustafa Khattab, the Clear Quran": Name.DR_MUSTAFA_KHATTAB_THE_CLEAR_QURAN,
-  "Fadel Soliman, Bridges’ translation": Name.FADEL_SOLIMAN_BRIDGES_TRANSLATION,
-  "Indonesian Islamic affairs ministry": Name.INDONESIAN_ISLAMIC_AFFAIRS_MINISTRY,
-  "King Fahad Quran Complex": Name.KING_FAHAD_QURAN_COMPLEX
+  "تفسير المیسر": Name.EMPTY,
+  "تفسير الجلالين": Name.NAME,
+  "Simple Clean": Name.SIMPLE_CLEAN
+});
+
+enum Type { TAFSIR, QURAN }
+
+final typeValues = EnumValues({
+  "quran": Type.QURAN,
+  "tafsir": Type.TAFSIR
+});
+
+class Surah {
+  Surah({
+    @required this.number,
+    @required this.name,
+    @required this.englishName,
+    @required this.englishNameTranslation,
+    @required this.revelationType,
+  });
+
+  int number;
+  String name;
+  String englishName;
+  String englishNameTranslation;
+  RevelationType revelationType;
+
+  factory Surah.fromJson(Map<String, dynamic> json) => Surah(
+    number: json["number"],
+    name: json["name"],
+    englishName: json["englishName"],
+    englishNameTranslation: json["englishNameTranslation"],
+    revelationType: revelationTypeValues.map[json["revelationType"]],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "number": number,
+    "name": name,
+    "englishName": englishName,
+    "englishNameTranslation": englishNameTranslation,
+    "revelationType": revelationTypeValues.reverse[revelationType],
+  };
+}
+
+enum RevelationType { MECCAN, MEDINAN }
+
+final revelationTypeValues = EnumValues({
+  "Meccan": RevelationType.MECCAN,
+  "Medinan": RevelationType.MEDINAN
 });
 
 class EnumValues<T> {

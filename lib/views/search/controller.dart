@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:quran/core/storage/app_storage.dart';
 
 import 'model.dart';
 
@@ -9,7 +10,8 @@ class SearchController {
   Future<void> search(String searchValue)async{
     searchModel = null;
     if(searchValue == null || searchValue.isEmpty) return;
-    String url = 'https://api.quran.com/api/v4/search?q=$searchValue';
+    final language = AppStorage.isAppLanguageArabic ? 'ar' : 'en';
+    String url = 'http://api.alquran.cloud/v1/search/$searchValue/all/$language';
     final response = await Dio().get(url);
     try{
       searchModel = SearchModel.fromJson(response.data);

@@ -9,23 +9,30 @@ class SearchView extends StatefulWidget {
 
 class _SearchViewState extends State<SearchView> {
   SearchController searchController = SearchController();
+  bool _isLoading = false;
+
+  void search(String v)async{
+    setState(()=> _isLoading = true);
+    await searchController.search(v);
+    setState(()=> _isLoading = false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
         title: TextField(
           decoration: InputDecoration(
             hintText: AppStorage.isAppLanguageArabic ? 'ابحث عن آية' : 'Search for Ayah',
-            border: OutlineInputBorder(borderSide: BorderSide.none)
+            border: OutlineInputBorder(borderSide: BorderSide.none),
           ),
-          onChanged: (v)async{
-            await searchController.search(v);
-            setState((){});
-          },
+          textInputAction: TextInputAction.search,
+          onSubmitted: search,
         ),
       ),
-      body: searchController.searchModel == null || searchController.searchModel.search.results.isEmpty ?
+      body: _isLoading ? Center(
+        child: CircularProgressIndicator(),
+      ) : searchController.searchModel == null || searchController.searchModel.data.matches.isEmpty ?
           Center(child: Text(AppStorage.isAppLanguageArabic ? 'لا توجد نتائج!' : 'No Result!'))
           : Column(
             children: [
@@ -36,9 +43,9 @@ class _SearchViewState extends State<SearchView> {
                 child: ListView.separated(
         padding: EdgeInsets.all(20),
         separatorBuilder: (context, index) => Divider(thickness: 2,height: 30,),
-        itemCount: searchController.searchModel.search.results.length,
+        itemCount: searchController.searchModel.data.matches.length,
         itemBuilder: (context, index) {
-                final searchItem = searchController.searchModel.search.results[index];
+                final searchItem = searchController.searchModel.data.matches[index];
                 return Row(
                   textDirection: AppStorage.isAppLanguageArabic ? TextDirection.rtl : TextDirection.ltr,
                   children: [
