@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quran/core/router/router.dart';
 import 'package:quran/core/storage/app_storage.dart';
+import 'package:quran/views/audio/sound.dart';
 import 'package:quran/views/show/view.dart';
 import 'package:quran/widgets/AnimatedWidgets.dart';
 import 'package:quran/widgets/customButton.dart';
@@ -33,6 +34,11 @@ class SelectLanguage extends StatelessWidget {
                   virticaloffset: -50,
                   duration: 2.1,
                  child: CustomButton(title: "English",onPressed: ()=> AppStorage.changeLanguage(AppLanguages.EN))),
+              AnimatedWidgets(
+                  horizontalOffset: -20,
+                  virticaloffset: -50,
+                  duration: 2.1,
+                  child: CustomButton(title: "الاستماع",onPressed: ()=> MagicRouter.navigateTo(Mp3Page()))),
               // AnimatedWidgets(
               //     horizontalOffset: 20,
               //     virticaloffset: -50,
