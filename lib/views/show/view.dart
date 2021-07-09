@@ -30,27 +30,34 @@ class _ShowViewState extends State<ShowView> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        iconTheme: IconThemeData(color: Colors.black),
-        title: Container(
-          margin: EdgeInsets.symmetric(vertical: 10),
-          height:height*.07,
-          width: height*.3,
-          decoration: BoxDecoration(
-            image:DecorationImage(
-                image: AssetImage("assets/images/Black.png"),
-                fit: BoxFit.cover
-            ),
-          ),
-          child: Center(
-            child: Text(widget.name,style: TextStyle(color: Colors.black,fontSize:22,fontWeight: FontWeight.bold),),
-          ),
-        ),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   centerTitle: true,
+      //   iconTheme: IconThemeData(color: Colors.black),
+      //   // title: Container(
+      //   //   margin: EdgeInsets.symmetric(vertical:20),
+      //   //   height:height*.07,
+      //   //   width: height*.4,
+      //   //   decoration: BoxDecoration(
+      //   //     image:DecorationImage(
+      //   //         image: AssetImage("assets/images/Black.png"),
+      //   //         fit: BoxFit.cover
+      //   //     ),
+      //   //   ),
+      //   //   child: Column(
+      //   //     children: [
+      //   //
+      //   //       Center(
+      //   //         child: Text(widget.name,style: TextStyle(color: Colors.black,fontSize:22,fontWeight: FontWeight.bold),),
+      //   //       ),
+      //   //     ],
+      //   //   ),
+      //   // ),
+      // ),
         body:Container(
           height: double.infinity,
+          margin: EdgeInsets.only(top:40),
           // decoration: BoxDecoration(
           //   image: DecorationImage(
           //       image: AssetImage("assets/images/show.png"),
@@ -61,6 +68,20 @@ class _ShowViewState extends State<ShowView> {
             padding: EdgeInsets.symmetric(horizontal: 5),
             // mainAxisAlignment:MainAxisAlignment.center,
             children: [
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                height:height*.07,
+                width: height*.3,
+                decoration: BoxDecoration(
+                  image:DecorationImage(
+                      image: AssetImage("assets/images/Black.png"),
+                      fit: BoxFit.cover
+                  ),
+                ),
+                child: Center(
+                  child: Text(widget.name,style: TextStyle(color: Colors.black,fontSize:22,fontWeight: FontWeight.bold),),
+                ),
+              ),
               if(!_isLoading)AnimatedWidgets(
                 horizontalOffset: 50,
                 virticaloffset: 20,
