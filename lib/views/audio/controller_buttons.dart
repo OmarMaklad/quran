@@ -10,12 +10,8 @@ class ControlButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // padding: EdgeInsets.all(20),
-      // margin: EdgeInsets.only(left: 80,right: 80),
       decoration: BoxDecoration(
         color: Colors.black54,
-          // color: Colors.yellow,
-          // borderRadius: BorderRadius.circular(20)
           ),
       child: Directionality(
         textDirection: TextDirection.ltr,

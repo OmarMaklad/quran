@@ -15,15 +15,16 @@ class Mp3Page extends StatefulWidget {
 
 class _Mp3PageState extends State<Mp3Page> {
   AudioPlayer _player;
-  ConcatenatingAudioSource _playlist = ConcatenatingAudioSource(children: [
-    LoopingAudioSource(
+  ConcatenatingAudioSource _playlist = ConcatenatingAudioSource(
+      children: [
+       LoopingAudioSource(
       count: 1,
       child: ClippingAudioSource(
         start: Duration(seconds: 00),
         end: Duration(seconds: 52),
         child: AudioSource.uri(
             Uri.parse("https://server10.mp3quran.net/minsh/001.mp3")),
-        tag: AudioMetadata(title: "الفاتحة "),
+        tag: AudioMetadata(title: "الفاتحة"),
       ),
     ),
     LoopingAudioSource(
@@ -1765,7 +1766,7 @@ class _Mp3PageState extends State<Mp3Page> {
                   return ListView.builder(
                     itemCount: sequence.length,
                     itemBuilder: (context, index) {
-                      final mp3Index = index+ 1;
+                      final mp3Index = index+1;
                       final url = 'https://server10.mp3quran.net/minsh/' + mp3Index.toString().padLeft(3,'0') + '.mp3';
                       return Material(
                       color: index == state.currentIndex
@@ -1779,18 +1780,6 @@ class _Mp3PageState extends State<Mp3Page> {
                           _player.seek(Duration.zero, index: index);
                         },
                       ),
-
-                      // ListTile(
-                      //   leading: Icon(Icons.surround_sound),
-                      //   subtitle:  Text(''),
-                      //   title: Text(
-                      //     sequence[index].tag.title,
-                      //     style: TextStyle(fontSize: 20,color: kAccentColor),
-                      //   ),
-                      //   onTap: () {
-                      //     _player.seek(Duration.zero, index: index);
-                      //   },
-                      // ),
                     );
                     },
                   );
@@ -1816,14 +1805,6 @@ class _Mp3PageState extends State<Mp3Page> {
                           Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                // Center(
-                                //     child: CircleAvatar(
-
-                                //   backgroundColor: Colors.white,
-                                //   backgroundImage:
-                                //       AssetImage('assets/images/bg.png',),
-                                //   radius: 50,
-                                // )),
                                 Text(metadata.album ?? '',
                                     style: TextStyle(color: Colors.white)
                                     // Theme.of(context).textTheme.headline6,
@@ -1876,15 +1857,12 @@ class _Mp3PageState extends State<Mp3Page> {
                                           LoopMode.all,
                                           LoopMode.one,
                                         ];
-                                        final index =
-                                            cycleModes.indexOf(loopMode);
+                                        final index = cycleModes.indexOf(loopMode);
                                         return IconButton(
                                           icon: icons[index],
                                           onPressed: () {
                                             _player.setLoopMode(cycleModes[
-                                                (cycleModes.indexOf(loopMode) +
-                                                        1) %
-                                                    cycleModes.length]);
+                                                (cycleModes.indexOf(loopMode) + 1) % cycleModes.length]);
                                           },
                                         );
                                       },
@@ -1911,8 +1889,7 @@ class _Mp3PageState extends State<Mp3Page> {
                                               : Icon(Icons.shuffle,
                                                   color: Colors.white),
                                           onPressed: () {
-                                            _player.setShuffleModeEnabled(
-                                                !shuffleModeEnabled);
+                                            _player.setShuffleModeEnabled(!shuffleModeEnabled);
                                           },
                                         );
                                       },

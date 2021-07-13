@@ -30,40 +30,10 @@ class _ShowViewState extends State<ShowView> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0,
-      //   centerTitle: true,
-      //   iconTheme: IconThemeData(color: Colors.black),
-      //   // title: Container(
-      //   //   margin: EdgeInsets.symmetric(vertical:20),
-      //   //   height:height*.07,
-      //   //   width: height*.4,
-      //   //   decoration: BoxDecoration(
-      //   //     image:DecorationImage(
-      //   //         image: AssetImage("assets/images/Black.png"),
-      //   //         fit: BoxFit.cover
-      //   //     ),
-      //   //   ),
-      //   //   child: Column(
-      //   //     children: [
-      //   //
-      //   //       Center(
-      //   //         child: Text(widget.name,style: TextStyle(color: Colors.black,fontSize:22,fontWeight: FontWeight.bold),),
-      //   //       ),
-      //   //     ],
-      //   //   ),
-      //   // ),
-      // ),
+
         body:Container(
           height: double.infinity,
           margin: EdgeInsets.only(top:40),
-          // decoration: BoxDecoration(
-          //   image: DecorationImage(
-          //       image: AssetImage("assets/images/show.png"),
-          //       fit: BoxFit.cover
-          //   ),
-          // ),
           child: ListView(
             padding: EdgeInsets.symmetric(horizontal: 5),
             // mainAxisAlignment:MainAxisAlignment.center,

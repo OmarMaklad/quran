@@ -18,46 +18,9 @@ class CustomMp3ListTille extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: ontap,
-            // onLongPress: () async {
-            //   final appPath = await getApplicationDocumentsDirectory();
-            //   final path = Directory(appPath.path + '/Quraani');
-            //   await Permission.storage.request();
-            //   // var path = Directory('storage/emulated/0/quraan');
-            //   if (await path.exists() == false) {
-            //     path.create();
-            //   }
-            //   await FlutterDownloader.enqueue(
-            //     url: url,
-            //     savedDir: path.path,
-            //     // savedDir: 'Locations/On  My iPhone//',
-            //     showNotification: true,
-            //     openFileFromNotification: false,
-            //   ).then((value) {
-            //     ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            //     ScaffoldMessenger.of(context)
-            //         .showSnackBar(SnackBar(content: Text('جاري التحميل')));
-            //   }).onError((error, stackTrace) {
-            //     ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            //     ScaffoldMessenger.of(context)
-            //         .showSnackBar(SnackBar(content: Text(error.toString())));
-            //     return;
-            //   });
-            // },
             child: Container(
               padding: EdgeInsets.only(right: 10),
               child: ListTile(
-                // leading:
-                //  Stack(
-                //   alignment: Alignment.center,
-                //   children: [
-                //     // Image.asset(image),
-
-                //   ],
-                // ),
-                // subtitle: Text(
-                //   'ضغطه مطولة لتحميل الصوت',
-                //   style: TextStyle(color: Colors.white, fontSize: 8),
-                // ),
                 title: Text(
                   title,
                   style: TextStyle(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:quran/core/quran/sura.dart';
 import 'package:quran/core/router/router.dart';
 import 'package:quran/core/storage/app_storage.dart';
-import 'package:quran/views/search/screens/search_page.dart';
 import 'package:quran/views/show/view.dart';
 import 'package:quran/widgets/customButton.dart';
 

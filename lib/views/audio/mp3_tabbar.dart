@@ -7,9 +7,6 @@ class Mp3TabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlipInX(
           child: Scaffold(
-            // appBar: AppBar(
-            //   title: Text("الاستماع",style: TextStyle(fontWeight: FontWeight.bold),),
-            // ),
             body: Mp3Page(),
           ),
     );
